@@ -37,12 +37,25 @@ updater = Updater("your_own_API_Token got from BotFather",
                   use_context=True)
   
   
-def start(update: Update, context: CallbackContext):
-    update.message.reply_text(
-        "Hello sir, Welcome to the Bot.Please write\
-        /help to see the commands available.")
   
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("""Available Commands :-
     i) send the command as normal message to execute
     ii) To enter inputs, use ':' as prefix before the input, ex- ':start_server' """)
+
+    
+def unknown_text(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "Sorry I can't recognize you , you said '%s'" % update.message.text)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
+
+updater.start_polling()
