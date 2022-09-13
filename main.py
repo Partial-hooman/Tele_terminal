@@ -40,7 +40,7 @@ updater = Updater("your_own_API_Token got from BotFather",
   
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("""Available Commands :-
-    i) send the command as normal message to execute
+    i) To enter commands, use '!' as prefix before the input, ex- '!ls'
     ii) To enter inputs, use ':' as prefix before the input, ex- ':start_server' """)
 
     
@@ -55,7 +55,7 @@ def unknown_text(update: Update, context: CallbackContext):
     
     
     
-    
+updater.dispatcher.add_handler(CommandHandler('help', help))    
 updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
 
 updater.start_polling()
